@@ -7,47 +7,66 @@
 <style>
 body {
   margin:0;
-  font-family:sans-serif;
-  overflow:hidden;
-  background:black;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #1a001a, #ffccd5);
+  color:#333;
+  text-align:center;
 }
 
-/* cinematic blurred background */
-.bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:url('photo1.jpg') center/cover no-repeat;
-  filter: blur(20px) brightness(0.6);
-  transform: scale(1.2);
+/* top header */
+.header {
+  padding:40px 20px 20px;
+  color:white;
 }
 
-/* glass card */
+.header h1 {
+  font-family:cursive;
+  font-size:32px;
+  text-shadow:0 0 10px rgba(255,255,255,0.6);
+}
+
+/* main card */
 .card {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:85%;
-  max-width:340px;
+  background:#ffd6e0;
+  margin:20px;
   padding:25px;
   border-radius:25px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(15px);
-  color:white;
-  text-align:center;
-  box-shadow:0 0 40px rgba(255,105,180,0.5);
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* glowing text */
-h3 {
-  color:#ff99cc;
-  text-shadow:0 0 10px #ff4d6d;
+/* images */
+.img {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:10px;
+  box-shadow:0 0 15px rgba(255,105,180,0.6);
 }
 
-/* buttons */
+/* heart */
+.heart {
+  font-size:28px;
+  margin:10px 0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {transform:scale(1);}
+  50% {transform:scale(1.2);}
+  100% {transform:scale(1);}
+}
+
+/* text */
+.text {
+  font-size:16px;
+  line-height:1.6;
+  margin-top:10px;
+}
+
+/* button */
 button {
-  margin-top:15px;
+  margin-top:20px;
   padding:10px 20px;
   border:none;
   border-radius:20px;
@@ -56,120 +75,83 @@ button {
   font-size:16px;
 }
 
-/* floating hearts */
-.heart {
-  position:absolute;
-  font-size:18px;
-  animation: float 6s linear infinite;
-}
-@keyframes float {
-  0% {transform: translateY(100vh);}
-  100% {transform: translateY(-10vh);}
+/* hidden sections */
+.section {
+  display:none;
+  animation: fade 0.8s ease;
 }
 
-/* panda */
-.panda {
-  position:absolute;
-  width:60px;
-  animation: bounce 3s infinite;
-}
-@keyframes bounce {
-  50% {transform: translateY(-10px);}
-}
-
-/* final photo glow */
-.final-img {
-  width:100%;
-  border-radius:20px;
-  margin-top:10px;
-  opacity:0;
-  animation: fadeIn 2s forwards;
-  box-shadow:0 0 30px #ff99cc;
-}
-
-@keyframes fadeIn {
-  to {opacity:1;}
+@keyframes fade {
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-
-<!-- hearts -->
-<div class="heart" style="left:10%">❤️</div>
-<div class="heart" style="left:30%; animation-delay:1s;">💖</div>
-<div class="heart" style="left:50%; animation-delay:2s;">💕</div>
-<div class="heart" style="left:70%; animation-delay:3s;">💗</div>
-<div class="heart" style="left:90%; animation-delay:4s;">💓</div>
-
-<!-- panda -->
-<img class="panda" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" style="bottom:10%; left:5%;">
-<img class="panda" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" style="bottom:15%; right:5%;">
-
-<div class="card" id="card">
-<h3>Sripuu Sonaa Butkii Puchkii 🐼❤️</h3>
-<p id="msg">Tap me...</p>
-
-<button onclick="next()">Tap 💌</button>
-<button id="noBtn" onmouseover="moveNo()">No 😤</button>
+<div class="header">
+  <h1>A little note for you ❤️</h1>
 </div>
 
-<audio id="music" loop>
-<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
-</audio>
+<div class="card">
+
+  <!-- first visible -->
+  <div id="s1" class="section" style="display:block;">
+    <img src="Screenshot_20260329-233056.png" class="img">
+    <div class="heart">💖</div>
+    <div class="text">
+      I don’t know what’s going on…  
+      but I just want you to know one thing…
+    </div>
+    <button onclick="next(1)">Tap 💌</button>
+  </div>
+
+  <!-- second -->
+  <div id="s2" class="section">
+    <div class="text">
+      I’m still here ❤️  
+      I didn’t go anywhere…
+    </div>
+    <button onclick="next(2)">Tap 💌</button>
+  </div>
+
+  <!-- third -->
+  <div id="s3" class="section">
+    <div class="text">
+      You don’t have to explain anything…  
+      just be okay 🥺
+    </div>
+    <button onclick="next(3)">Tap 💌</button>
+  </div>
+
+  <!-- fourth -->
+  <div id="s4" class="section">
+    <div class="text">
+      Haal mat chorna bachha ❤️  
+      I’m always with you 🐼
+    </div>
+    <button onclick="next(4)">Tap 💌</button>
+  </div>
+
+  <!-- final -->
+  <div id="s5" class="section">
+    <img src="Screenshot_20260329-233056.png" class="img">
+    <img src="Screenshot_20260329-233056.png" class="img">
+    <div class="text">
+      I miss you 🥺  
+      Take your time…  
+      I’ll be right here ❤️
+    </div>
+  </div>
+
+</div>
 
 <script>
-let step = 0;
-const msg = document.getElementById("msg");
-
-function next(){
-step++;
-
-if(step===1){
-msg.innerHTML="I don’t know what’s going on…";
+function next(n){
+  document.getElementById("s"+n).style.display="none";
+  document.getElementById("s"+(n+1)).style.display="block";
 }
-else if(step===2){
-msg.innerHTML="But I’m still here ❤️";
-}
-else if(step===3){
-msg.innerHTML="You don’t have to explain anything…";
-}
-else if(step===4){
-msg.innerHTML="Just be okay 🥺";
-}
-else if(step===5){
-msg.innerHTML="Haal mat chorna bachha ❤️";
-}
-else if(step===6){
-finalScreen();
-}
-}
-
-function moveNo(){
-let btn=document.getElementById("noBtn");
-btn.style.position="absolute";
-btn.style.top=Math.random()*80+"%";
-btn.style.left=Math.random()*80+"%";
-}
-
-function finalScreen(){
-let card=document.getElementById("card");
-
-card.innerHTML = `
-<h2 style="color:#ff99cc;">Just this… ❤️</h2>
-<p>I miss you 🥺<br><br>I’ll be here… always 🐼</p>
-
-<img src="Screenshot_20260329-233056.png" class="final-img">
-<img src="Screenshot_20260329-233056.png" class="final-img" style="margin-top:15px; animation-delay:1s;">
-`;
-}
-
-/* music start */
-document.body.addEventListener('click', function(){
-document.getElementById("music").play();
-},{once:true});
 </script>
 
 </body>
